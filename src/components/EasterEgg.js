@@ -4,7 +4,7 @@ import './EasterEgg.css';
 const EasterEgg = () => {
   const [sequence, setSequence] = useState('');
   const [showEasterEgg, setShowEasterEgg] = useState(false);
-  const secretCode = 'simen';
+  const secretCode = 'anndrea';
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -25,8 +25,8 @@ const EasterEgg = () => {
   return showEasterEgg ? (
     <div className="easter-egg-overlay">
       <div className="easter-egg-content">
-        <h2>🎉 You found me! 🎉</h2>
-        <p>Blir ikke noe domeneshop her i gården!!</p>
+        <h2>🎉 Du er jo bare helt rå! 🎉</h2>
+        <p>og du er sykt kul som fant denne easter eggen</p>
         <button onClick={() => setShowEasterEgg(false)}>Close</button>
       </div>
     </div>
