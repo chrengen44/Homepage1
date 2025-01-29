@@ -174,7 +174,7 @@ const Snake = () => {
     <div className={`snake-game ${isFullscreen ? 'fullscreen' : ''}`} ref={gameContainerRef}>
       {showNameInput ? (
         <div className="start-prompt">
-          <h3>Snake Game - Catch the CVE's</h3>
+          <h3>River Security Snake Game - Catch the CVE's</h3>
           <p>Enter your name to start playing in fullscreen mode</p>
           <form onSubmit={handleNameSubmit} className="name-input-form">
             <input
