@@ -1,0 +1,308 @@
+.about-me-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #64ffda;
+  font-family: 'Fira Code', monospace;
+  transition: all 0.3s ease;
+}
+
+.App.light .about-me-container {
+  color: var(--text-primary-light);
+}
+
+.App.light .terminal-section {
+  background-color: var(--bg-secondary-light);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.App.light .terminal-header {
+  background-color: var(--terminal-bg-light);
+}
+
+.App.light .terminal-content .output {
+  color: var(--text-secondary-light);
+}
+
+.App.light .command {
+  color: var(--text-primary-light);
+}
+
+.App.light .glitch {
+  color: var(--text-primary-light);
+  text-shadow: 0 0 5px rgba(42, 90, 136, 0.5);
+}
+
+.App.light .cyber-line {
+  background: linear-gradient(90deg, transparent, var(--text-primary-light), transparent);
+}
+
+.App.light .bracket {
+  color: var(--text-primary-light);
+}
+
+.App.light .highlight {
+  color: var(--text-primary-light);
+}
+
+.App.dark .terminal-section {
+  background-color: var(--bg-secondary-dark);
+}
+
+.App.dark .terminal-header {
+  background-color: var(--terminal-bg-dark);
+}
+
+.App.dark .command {
+  color: var(--text-primary-dark);
+}
+
+.App.dark .highlight {
+  color: var(--text-primary-dark);
+}
+
+.cyber-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.glitch-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.glitch {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #64ffda;
+  text-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #ff00ff;
+  animation: glitch-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: 2px 0 #00ffff;
+  animation: glitch-2 2s infinite linear alternate-reverse;
+}
+
+.cyber-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #64ffda, transparent);
+  margin: 1rem auto;
+  width: 50%;
+}
+
+.location {
+  font-size: 1.1rem;
+  color: #8892b0;
+}
+
+.bracket {
+  color: #64ffda;
+}
+
+.terminal-section {
+  background-color: #112240;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.terminal-header {
+  background-color: #1d2d50;
+  padding: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ff5f56;
+}
+
+.terminal-button:nth-child(2) {
+  background-color: #ffbd2e;
+}
+
+.terminal-button:nth-child(3) {
+  background-color: #27c93f;
+}
+
+.terminal-content {
+  padding: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.command {
+  color: #64ffda;
+  margin-bottom: 0.5rem;
+}
+
+.command::before {
+  content: "❯ ";
+  color: #64ffda;
+}
+
+.output {
+  color: #8892b0;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.highlight {
+  color: #64ffda;
+  margin-right: 0.5rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+.subtle {
+  color: #526480;
+  font-size: 0.9rem;
+}
+
+@keyframes glitch-1 {
+  0% {
+    clip: rect(20px, 950px, 89px, 0);
+  }
+  5% {
+    clip: rect(36px, 950px, 115px, 0);
+  }
+  10% {
+    clip: rect(54px, 950px, 70px, 0);
+  }
+  15% {
+    clip: rect(27px, 950px, 89px, 0);
+  }
+  20% {
+    clip: rect(73px, 950px, 105px, 0);
+  }
+  25% {
+    clip: rect(42px, 950px, 96px, 0);
+  }
+  30% {
+    clip: rect(64px, 950px, 98px, 0);
+  }
+  35% {
+    clip: rect(78px, 950px, 115px, 0);
+  }
+  40% {
+    clip: rect(35px, 950px, 88px, 0);
+  }
+  45% {
+    clip: rect(56px, 950px, 79px, 0);
+  }
+  50% {
+    clip: rect(28px, 950px, 115px, 0);
+  }
+}
+
+@keyframes glitch-2 {
+  0% {
+    clip: rect(42px, 950px, 78px, 0);
+  }
+  5% {
+    clip: rect(12px, 950px, 118px, 0);
+  }
+  10% {
+    clip: rect(48px, 950px, 90px, 0);
+  }
+  15% {
+    clip: rect(42px, 950px, 98px, 0);
+  }
+  20% {
+    clip: rect(60px, 950px, 87px, 0);
+  }
+  25% {
+    clip: rect(78px, 950px, 115px, 0);
+  }
+  30% {
+    clip: rect(40px, 950px, 94px, 0);
+  }
+  35% {
+    clip: rect(27px, 950px, 89px, 0);
+  }
+  40% {
+    clip: rect(68px, 950px, 107px, 0);
+  }
+  45% {
+    clip: rect(35px, 950px, 124px, 0);
+  }
+  50% {
+    clip: rect(53px, 950px, 77px, 0);
+  }
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-pic-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--text-primary-dark);
+  position: relative;
+}
+
+.App.light .profile-pic-container {
+  border-color: var(--text-primary-light);
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.1);
+}
+
+.name-section {
+  text-align: left;
+}
+
+/* Media query for mobile responsiveness */
+@media (max-width: 768px) {
+  .profile-section {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .name-section {
+    text-align: center;
+  }
+} 

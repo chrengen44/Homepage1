@@ -1,0 +1,164 @@
+.games-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Fira Code', monospace;
+}
+
+.calculator-section {
+  margin-top: 2rem;
+}
+
+.calculator {
+  background-color: var(--bg-secondary-dark);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.App.light .calculator {
+  background-color: var(--bg-secondary-light);
+}
+
+.calculator-display {
+  background-color: var(--terminal-bg-dark);
+  color: var(--text-primary-dark);
+  padding: 1rem;
+  text-align: right;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.App.light .calculator-display {
+  background-color: var(--terminal-bg-light);
+  color: var(--text-primary-light);
+}
+
+.equation {
+  font-size: 0.8rem;
+  min-height: 1rem;
+  color: var(--text-secondary-dark);
+}
+
+.App.light .equation {
+  color: var(--text-secondary-light);
+}
+
+.current-value {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.calculator-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background-color: var(--bg-primary-dark);
+}
+
+.App.light .calculator-buttons {
+  background-color: var(--bg-primary-light);
+}
+
+.span-two {
+  grid-column: span 2;
+}
+
+.span-three {
+  grid-column: span 3;
+}
+
+.calculator button {
+  border: none;
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  background-color: var(--bg-secondary-dark);
+  color: var(--text-primary-dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.calculator button.operator {
+  background-color: var(--text-primary-dark);
+  color: var(--bg-primary-dark);
+  font-weight: bold;
+}
+
+.App.light .calculator button.operator {
+  background-color: var(--text-primary-light);
+  color: var(--bg-primary-light);
+  font-weight: bold;
+}
+
+.calculator button.operator:hover {
+  background-color: rgba(100, 255, 218, 0.8);
+  color: var(--bg-primary-dark);
+}
+
+.App.light .calculator button.operator:hover {
+  background-color: rgba(42, 90, 136, 0.8);
+  color: var(--bg-primary-light);
+}
+
+.calculator button:hover {
+  background-color: rgba(100, 255, 218, 0.1);
+}
+
+.App.light .calculator button:hover {
+  background-color: rgba(42, 90, 136, 0.1);
+}
+
+.calculator button.equals {
+  background-color: #00b4d8 !important;
+  color: white !important;
+}
+
+.App.light .calculator button.equals {
+  background-color: #0077b6 !important;
+  color: white !important;
+}
+
+.calculator button.equals:hover {
+  background-color: #0096c7 !important;
+}
+
+.App.light .calculator button.equals:hover {
+  background-color: #023e8a !important;
+}
+
+.snake-section {
+  margin-top: 4rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  color: var(--text-primary-dark);
+  margin-bottom: 0.5rem;
+  font-family: 'Fira Code', monospace;
+}
+
+.App.light .section-header h2 {
+  color: var(--text-primary-light);
+}
+
+.section-header .cyber-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--text-primary-dark), transparent);
+  margin: 0.5rem auto;
+  width: 30%;
+}
+
+.App.light .section-header .cyber-line {
+  background: linear-gradient(90deg, transparent, var(--text-primary-light), transparent);
+} 

@@ -1,0 +1,51 @@
+.hobbies-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Fira Code', monospace;
+  transition: all 0.3s ease;
+}
+
+.App.light .hobbies-container {
+  color: var(--text-primary-light);
+}
+
+.App.light .terminal-section {
+  background-color: var(--bg-secondary-light);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.App.light .terminal-content .output {
+  background-color: var(--terminal-bg-light);
+  color: var(--text-secondary-light);
+}
+
+.App.light .hobby-title {
+  color: var(--text-primary-light);
+}
+
+.hobby-title {
+  color: #64ffda;
+  margin: 1.5rem 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.hobby-title:first-child {
+  margin-top: 0;
+}
+
+.output pre {
+  background-color: #1d2d50;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.terminal-content .output {
+  white-space: pre-wrap;
+  font-family: 'Fira Code', monospace;
+  background-color: #1d2d50;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+} 

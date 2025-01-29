@@ -1,0 +1,240 @@
+:root {
+  --bg-primary-dark: #0a192f;
+  --bg-secondary-dark: #112240;
+  --text-primary-dark: #64ffda;
+  --text-secondary-dark: #8892b0;
+  --nav-bg-dark: rgba(17, 34, 64, 0.95);
+  --terminal-bg-dark: #1d2d50;
+  
+  --bg-primary-light: #f0f4f8;
+  --bg-secondary-light: #ffffff;
+  --text-primary-light: #2a5a88;
+  --text-secondary-light: #4a5568;
+  --nav-bg-light: rgba(255, 255, 255, 0.95);
+  --terminal-bg-light: #e2e8f0;
+}
+
+.App {
+  min-height: 100vh;
+  transition: all 0.3s ease;
+  overflow-x: hidden;
+}
+
+.App.dark {
+  background-color: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
+}
+
+.App.light {
+  background-color: var(--bg-primary-light);
+  color: var(--text-primary-light);
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.nav-header {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.App.dark .nav-header {
+  background-color: var(--nav-bg-dark);
+  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.App.light .nav-header {
+  background-color: var(--nav-bg-light);
+  border-bottom: 1px solid rgba(42, 90, 136, 0.1);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.5rem;
+}
+
+.nav-header h1 {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.nav-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-family: 'Fira Code', monospace;
+  position: relative;
+  overflow: hidden;
+  background: none;
+  cursor: pointer;
+}
+
+.App.dark .nav-link {
+  color: var(--text-primary-dark);
+  border: 1px solid var(--text-primary-dark);
+}
+
+.App.light .nav-link {
+  color: var(--text-primary-light);
+  border: 1px solid var(--text-primary-light);
+}
+
+.App.dark .nav-link.active {
+  background-color: rgba(100, 255, 218, 0.1);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+}
+
+.App.light .nav-link.active {
+  background-color: rgba(42, 90, 136, 0.1);
+  box-shadow: 0 0 10px rgba(42, 90, 136, 0.3);
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(100, 255, 218, 0.1);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+main {
+  padding-top: 80px;
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .nav-header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  main {
+    padding-top: 60px;
+  }
+
+  .nav-top {
+    width: 100%;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 0;
+    gap: 0.5rem;
+    padding-top: 1rem;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem;
+  }
+
+  .theme-toggle-wrapper {
+    margin-top: 0.5rem;
+  }
+
+  .nav-links {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .nav-links.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}

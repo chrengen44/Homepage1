@@ -1,0 +1,130 @@
+.snake-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.score {
+  font-size: 1.5rem;
+  color: var(--text-primary-dark);
+}
+
+.App.light .score {
+  color: var(--text-primary-light);
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--text-primary-dark);
+  border-radius: 4px;
+  background-color: var(--bg-secondary-dark);
+  margin: 1rem;
+}
+
+.App.light .game-board {
+  border-color: var(--text-primary-light);
+  background-color: var(--bg-secondary-light);
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.App.light .cell {
+  border-color: rgba(42, 90, 136, 0.1);
+}
+
+.snake {
+  background-color: var(--text-primary-dark);
+  border-radius: 4px;
+}
+
+.App.light .snake {
+  background-color: var(--text-primary-light);
+}
+
+.food {
+  background-color: #00b4d8;
+  border-radius: 50%;
+}
+
+.start-message {
+  color: var(--text-secondary-dark);
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.App.light .start-message {
+  color: var(--text-secondary-light);
+}
+
+.game-over {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-primary-dark);
+}
+
+.App.light .game-over {
+  color: var(--text-primary-light);
+}
+
+.reset-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--text-primary-dark);
+  color: var(--bg-primary-dark);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Fira Code', monospace;
+  transition: all 0.3s ease;
+}
+
+.App.light .reset-button {
+  background-color: var(--text-primary-light);
+  color: var(--bg-primary-light);
+}
+
+.reset-button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.snake-text {
+  color: var(--bg-primary-dark);
+  z-index: 2;
+}
+
+.App.light .snake-text {
+  color: var(--bg-primary-light);
+}
+
+.food-text {
+  color: white;
+  z-index: 2;
+  font-size: 10px;
+} 
