@@ -7,6 +7,7 @@ import { ThemeProvider, useTheme } from './context/ThemeContext';
 import Home from './components/Home';
 import Games from './components/Games';
 import BurgerMenu from './components/BurgerMenu';
+import EasterEgg from './components/EasterEgg';
 
 function AppContent() {
   const [currentSection, setCurrentSection] = useState('home');
@@ -64,6 +65,7 @@ function AppContent() {
         {currentSection === 'hobbies' && <Hobbies />}
         {currentSection === 'games' && <Games />}
       </main>
+      <EasterEgg />
     </div>
   );
 }
