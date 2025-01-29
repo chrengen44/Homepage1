@@ -47,30 +47,15 @@ const EasterEgg = () => {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
-  return (
-    <div className="puzzle-container">
-      {showEasterEgg ? (
-        <div className="easter-egg-overlay">
-          <div className="easter-egg-content">
-            <h2>🎉 Du er jo bare helt rå! 🎉</h2>
-            <p>og du er sykt kul som fant denne easter eggen</p>
-            <button onClick={() => setShowEasterEgg(false)}>Close</button>
-          </div>
-        </div>
-      ) : null}
-      
-      {/* Puzzle game content - always show this */}
-      <div className="puzzle-game">
-        <button className="fullscreen-btn" onClick={toggleFullscreen}>
-          <FontAwesomeIcon icon={isFullscreen ? faCompress : faExpand} />
-        </button>
-        {/* Add your puzzle game content here */}
-        <div className="puzzle-board">
-          {/* Your puzzle pieces/game logic here */}
-        </div>
+  return showEasterEgg ? (
+    <div className="easter-egg-overlay">
+      <div className="easter-egg-content">
+        <h2>🎉 Du er jo bare helt rå! 🎉</h2>
+        <p>og du er sykt kul som fant denne easter eggen</p>
+        <button onClick={() => setShowEasterEgg(false)}>Close</button>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default EasterEgg; 
