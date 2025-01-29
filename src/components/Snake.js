@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './Snake.css';
 
 const Snake = () => {
@@ -9,6 +9,8 @@ const Snake = () => {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const gameContainerRef = useRef(null);
 
   const generateFood = useCallback(() => {
     return [
@@ -101,9 +103,36 @@ const Snake = () => {
     return SNAKE_TEXT[index];
   };
 
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      gameContainerRef.current.requestFullscreen().catch(err => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
   return (
-    <div className="snake-game">
-      <div className="game-info">
+    <div className={`snake-game ${isFullscreen ? 'fullscreen' : ''}`} ref={gameContainerRef}>
+      <div className="game-controls">
+        <button 
+          className="fullscreen-button"
+          onClick={toggleFullscreen}
+        >
+          {isFullscreen ? '⤓' : '⤢'}
+        </button>
         <span className="score">Score: {score}</span>
         {!gameStarted && !gameOver && (
           <div className="start-message">Press any arrow key to start</div>
