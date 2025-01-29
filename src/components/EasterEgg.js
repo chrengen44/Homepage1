@@ -14,7 +14,7 @@ const EasterEgg = () => {
           setShowEasterEgg(true);
           return '';
         }
-        return newSequence.slice(-5); // Keep last 5 characters
+        return newSequence.slice(-7); // Keep last 7 characters to match secretCode length
       });
     };
 
