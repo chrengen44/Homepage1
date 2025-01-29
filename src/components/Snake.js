@@ -115,10 +115,8 @@ const Snake = () => {
       gameContainerRef.current.requestFullscreen().catch(err => {
         console.error(`Error attempting to enable fullscreen: ${err.message}`);
       });
-      setIsFullscreen(true);
     } else {
       document.exitFullscreen();
-      setIsFullscreen(false);
     }
   };
 
@@ -138,12 +136,13 @@ const Snake = () => {
   const handleNameSubmit = (e) => {
     e.preventDefault();
     if (playerName.trim()) {
-      gameContainerRef.current.requestFullscreen().catch(err => {
-        console.error(`Error attempting to enable fullscreen: ${err.message}`);
-      });
-      setIsFullscreen(true);
       setShowNameInput(false);
       setGameStarted(false);
+      setTimeout(() => {
+        gameContainerRef.current.requestFullscreen().catch(err => {
+          console.error(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+      }, 100);
     }
   };
 
@@ -172,7 +171,7 @@ const Snake = () => {
   }, [gameOver, saveScore]);
 
   return (
-    <div className="snake-game" ref={gameContainerRef}>
+    <div className={`snake-game ${isFullscreen ? 'fullscreen' : ''}`} ref={gameContainerRef}>
       {showNameInput ? (
         <div className="start-prompt">
           <h3>Snake Game - Catch the CVE's</h3>
