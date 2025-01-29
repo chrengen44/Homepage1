@@ -134,6 +134,10 @@ const Snake = () => {
   const handleNameSubmit = (e) => {
     e.preventDefault();
     if (playerName.trim()) {
+      gameContainerRef.current.requestFullscreen().catch(err => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+      setIsFullscreen(true);
       setShowNameInput(false);
       setGameStarted(false);
     }
@@ -163,19 +167,37 @@ const Snake = () => {
     }
   }, [gameOver, saveScore]);
 
+  // Exit game when leaving fullscreen
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !showNameInput) {
+        resetGame();
+        setShowNameInput(true);
+      }
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, [showNameInput]);
+
   return (
-    <div className={`snake-game ${isFullscreen ? 'fullscreen' : ''}`} ref={gameContainerRef}>
-      {showNameInput ? (
-        <form onSubmit={handleNameSubmit} className="name-input-form">
-          <input
-            type="text"
-            value={playerName}
-            onChange={(e) => setPlayerName(e.target.value)}
-            placeholder="Enter your name"
-            required
-          />
-          <button type="submit">Start Game</button>
-        </form>
+    <div className="snake-game" ref={gameContainerRef}>
+      {!isFullscreen ? (
+        <div className="start-prompt">
+          <h3>Snake Game - Catch the CVE's</h3>
+          <p>Enter your name to start playing in fullscreen mode</p>
+          <form onSubmit={handleNameSubmit} className="name-input-form">
+            <input
+              type="text"
+              value={playerName}
+              onChange={(e) => setPlayerName(e.target.value)}
+              placeholder="Enter your name"
+              required
+            />
+            <button type="submit">Start Game</button>
+          </form>
+        </div>
       ) : (
         <>
           <div className="game-controls">

@@ -83,39 +83,41 @@ const Games = () => {
         <div className="cyber-line"></div>
       </div>
 
-      <section className="calculator-section">
-        <div className="section-header">
-          <h2 className="glitch" data-text="Calculator">Calculator</h2>
-          <div className="cyber-line"></div>
-        </div>
-        <div className="terminal-box">
-          <div className="terminal-header">
-            <span className="terminal-button"></span>
-            <span className="terminal-button"></span>
-            <span className="terminal-button"></span>
+      <div className="games-grid">
+        <section className="game-section calculator-section">
+          <div className="section-header">
+            <h2 className="glitch" data-text="Calculator">Calculator</h2>
+            <div className="cyber-line"></div>
           </div>
-          <div className="terminal-content">
-            <Calculator />
+          <div className="terminal-box">
+            <div className="terminal-header">
+              <span className="terminal-button"></span>
+              <span className="terminal-button"></span>
+              <span className="terminal-button"></span>
+            </div>
+            <div className="terminal-content">
+              <Calculator />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="snake-section">
-        <div className="section-header">
-          <h2 className="glitch" data-text="Catch the CVE's">Catch the CVE's</h2>
-          <div className="cyber-line"></div>
-        </div>
-        <div className="terminal-box">
-          <div className="terminal-header">
-            <span className="terminal-button"></span>
-            <span className="terminal-button"></span>
-            <span className="terminal-button"></span>
+        <section className="game-section snake-section">
+          <div className="section-header">
+            <h2 className="glitch" data-text="Catch the CVE's">Catch the CVE's</h2>
+            <div className="cyber-line"></div>
           </div>
-          <div className="terminal-content">
-            <Snake />
+          <div className="terminal-box">
+            <div className="terminal-header">
+              <span className="terminal-button"></span>
+              <span className="terminal-button"></span>
+              <span className="terminal-button"></span>
+            </div>
+            <div className="terminal-content">
+              <Snake />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 };
