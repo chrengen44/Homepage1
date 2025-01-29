@@ -26,6 +26,8 @@
 }
 
 .game-board {
+  min-width: 600px;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   border: 2px solid var(--text-primary-dark);
@@ -46,6 +48,8 @@
 .cell {
   width: 30px;
   height: 30px;
+  min-width: 30px;
+  min-height: 30px;
   border: 1px solid rgba(100, 255, 218, 0.1);
   position: relative;
   display: flex;
@@ -222,8 +226,17 @@
   display: flex;
   gap: 2rem;
   align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .snake-game.fullscreen .game-container {
   justify-content: center;
+}
+
+.high-scores {
+  min-width: 250px;
+  flex-shrink: 0;
 } 

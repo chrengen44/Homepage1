@@ -141,12 +141,21 @@ const Snake = () => {
 
   const saveScore = useCallback(() => {
     if (score > 0) {
-      const newScores = [...highScores, { name: playerName, score }]
-        .sort((a, b) => b.score - a.score);
-      setHighScores(newScores);
+      // Get existing scores from localStorage
+      const existingScores = JSON.parse(localStorage.getItem('snakeHighScores') || '[]');
+      
+      // Add new score
+      const newScores = [...existingScores, { name: playerName, score }]
+        // Sort by score (highest first)
+        .sort((a, b) => b.score - a.score)
+        // Keep only top 10 scores
+        .slice(0, 10);
+      
+      // Save to localStorage and state
       localStorage.setItem('snakeHighScores', JSON.stringify(newScores));
+      setHighScores(newScores);
     }
-  }, [score, playerName, highScores]);
+  }, [score, playerName]);
 
   useEffect(() => {
     if (gameOver) {
