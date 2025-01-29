@@ -212,17 +212,86 @@
 }
 
 .name-input-form input {
-  padding: 0.5rem;
+  padding: 0.8rem 1rem;
   border: 2px solid var(--text-primary-dark);
   border-radius: 4px;
   background: transparent;
   color: var(--text-primary-dark);
   font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  transition: all 0.3s ease;
 }
 
 .App.light .name-input-form input {
   border-color: var(--text-primary-light);
   color: var(--text-primary-light);
+}
+
+.name-input-form input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+}
+
+.App.light .name-input-form input:focus {
+  box-shadow: 0 0 10px rgba(42, 90, 136, 0.3);
+}
+
+.name-input-form button {
+  padding: 0.8rem 2rem;
+  background: transparent;
+  border: 2px solid var(--text-primary-dark);
+  border-radius: 4px;
+  color: var(--text-primary-dark);
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.App.light .name-input-form button {
+  border-color: var(--text-primary-light);
+  color: var(--text-primary-light);
+}
+
+.name-input-form button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: var(--text-primary-dark);
+  transform: translate(-50%, -50%) rotate(45deg) translateY(100%);
+  transition: all 0.6s ease;
+  z-index: -1;
+}
+
+.App.light .name-input-form button::before {
+  background: var(--text-primary-light);
+}
+
+.name-input-form button:hover {
+  color: var(--bg-primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+}
+
+.App.light .name-input-form button:hover {
+  color: var(--bg-primary-light);
+  box-shadow: 0 5px 15px rgba(42, 90, 136, 0.3);
+}
+
+.name-input-form button:hover::before {
+  transform: translate(-50%, -50%) rotate(45deg) translateY(0);
+}
+
+.name-input-form button:active {
+  transform: translateY(-1px);
 }
 
 .game-container {
