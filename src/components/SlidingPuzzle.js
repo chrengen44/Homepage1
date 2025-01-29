@@ -5,6 +5,7 @@ const SlidingPuzzle = () => {
   const [tiles, setTiles] = useState([]);
   const [isWon, setIsWon] = useState(false);
   const [moves, setMoves] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Initialize puzzle
   useEffect(() => {
@@ -19,6 +20,30 @@ const SlidingPuzzle = () => {
     setIsWon(false);
     setMoves(0);
   };
+
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      const element = document.documentElement;
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      }
+      setIsFullscreen(true);
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+      setIsFullscreen(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -64,6 +89,9 @@ const SlidingPuzzle = () => {
   };
 
   const moveTile = (index) => {
+    if (!isFullscreen) {
+      return; // Prevent moves unless in fullscreen
+    }
     if (!canMoveTile(index) || isWon) return;
 
     const newTiles = [...tiles];
@@ -84,29 +112,51 @@ const SlidingPuzzle = () => {
     }
   };
 
-  return (
-    <div className="sliding-puzzle">
-      <div className="puzzle-stats">
-        <span>Moves: {moves}</span>
-        <button onClick={initializePuzzle} className="reset-button">New Game</button>
-      </div>
-      <div className="puzzle-grid">
-        {tiles.map((tile, index) => (
-          <div
-            key={index}
-            className={`puzzle-tile ${tile === null ? 'empty' : ''} ${canMoveTile(index) ? 'movable' : ''}`}
-            onClick={() => moveTile(index)}
-          >
-            {tile}
-          </div>
-        ))}
-      </div>
-      {isWon && (
-        <div className="win-message">
-          <h3>🎉 Puzzle Solved! 🎉</h3>
-          <p>You won in {moves} moves!</p>
+  if (!isFullscreen) {
+    return (
+      <div className="sliding-puzzle-container">
+        <div className="fullscreen-message">
+          <h2>Cyber Sliding Puzzle</h2>
+          <p>Click the button below to play in fullscreen mode</p>
+          <button onClick={toggleFullscreen} className="fullscreen-button">
+            Enter Fullscreen Mode
+          </button>
         </div>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="sliding-puzzle-container">
+      <div className="sliding-puzzle fullscreen">
+        <div className="puzzle-header">
+          <h2>Cyber Sliding Puzzle</h2>
+          <div className="puzzle-controls">
+            <span className="moves-counter">Moves: {moves}</span>
+            <button onClick={initializePuzzle} className="reset-button">New Game</button>
+            <button onClick={toggleFullscreen} className="exit-fullscreen-button">
+              Exit Fullscreen
+            </button>
+          </div>
+        </div>
+        <div className="puzzle-grid">
+          {tiles.map((tile, index) => (
+            <div
+              key={index}
+              className={`puzzle-tile ${tile === null ? 'empty' : ''} ${canMoveTile(index) ? 'movable' : ''}`}
+              onClick={() => moveTile(index)}
+            >
+              {tile}
+            </div>
+          ))}
+        </div>
+        {isWon && (
+          <div className="win-message">
+            <h3>🎉 Puzzle Solved! 🎉</h3>
+            <p>You won in {moves} moves!</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
