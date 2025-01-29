@@ -1,3 +1,12 @@
+:root {
+  --bg-primary-light: #ffffff;
+  --bg-secondary-light: #f0f0f0;
+  --bg-primary-dark: #1a1a1a;
+  --bg-secondary-dark: #2d2d2d;
+  --text-primary-dark: #333333;
+  --text-secondary-dark: #666666;
+}
+
 .easter-egg-overlay {
   position: fixed;
   top: 0;
@@ -8,7 +17,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 10000;
   animation: fadeIn 0.3s ease;
 }
 
@@ -53,4 +62,62 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+
+.puzzle-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-primary-light);
+}
+
+.puzzle-game {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.puzzle-board {
+  width: 90%;
+  max-width: 600px;
+  aspect-ratio: 1;
+  background: var(--bg-secondary-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fullscreen-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-primary-dark);
+  cursor: pointer;
+  z-index: 1000;
+  padding: 8px;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.fullscreen-btn:hover {
+  color: var(--text-secondary-dark);
+}
+
+/* Fullscreen styles */
+.puzzle-container:fullscreen {
+  background: var(--bg-primary-light);
+  padding: 20px;
+}
+
+.puzzle-container:fullscreen .puzzle-board {
+  max-width: 90vmin;
+  max-height: 90vmin;
 } 
