@@ -27,7 +27,7 @@ function AppContent() {
     <div className={`App ${isDarkMode ? 'dark' : 'light'}`}>
       <nav className="nav-header">
         <div className="nav-top">
-          <h1>Blir ikke noe domeneshop her i gården!!</h1>
+          <h1>Welcome to the show</h1>
           <BurgerMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
         </div>
         <div className={`nav-links ${isMenuOpen ? 'show' : ''}`}>

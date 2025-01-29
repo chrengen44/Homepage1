@@ -124,7 +124,11 @@ const Snake = () => {
 
   useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+      if (!document.fullscreenElement) {
+        setIsFullscreen(false);
+      } else {
+        setIsFullscreen(true);
+      }
     };
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
@@ -167,23 +171,9 @@ const Snake = () => {
     }
   }, [gameOver, saveScore]);
 
-  // Exit game when leaving fullscreen
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      if (!document.fullscreenElement && !showNameInput) {
-        resetGame();
-        setShowNameInput(true);
-      }
-      setIsFullscreen(!!document.fullscreenElement);
-    };
-
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
-  }, [showNameInput]);
-
   return (
     <div className="snake-game" ref={gameContainerRef}>
-      {!isFullscreen ? (
+      {showNameInput ? (
         <div className="start-prompt">
           <h3>Snake Game - Catch the CVE's</h3>
           <p>Enter your name to start playing in fullscreen mode</p>
