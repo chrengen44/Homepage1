@@ -188,4 +188,42 @@
   height: calc(80vh / 20);
   max-width: calc(90vw / 20);
   max-height: calc(90vw / 20);
+}
+
+.name-input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  padding: 2rem;
+  background: var(--bg-secondary-dark);
+  border-radius: 8px;
+}
+
+.App.light .name-input-form {
+  background: var(--bg-secondary-light);
+}
+
+.name-input-form input {
+  padding: 0.5rem;
+  border: 2px solid var(--text-primary-dark);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-primary-dark);
+  font-family: 'Fira Code', monospace;
+}
+
+.App.light .name-input-form input {
+  border-color: var(--text-primary-light);
+  color: var(--text-primary-light);
+}
+
+.game-container {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.snake-game.fullscreen .game-container {
+  justify-content: center;
 } 

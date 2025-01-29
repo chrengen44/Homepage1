@@ -1,0 +1,52 @@
+.high-scores {
+  margin: 1rem;
+  padding: 1rem;
+  background: var(--bg-secondary-dark);
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+.App.light .high-scores {
+  background: var(--bg-secondary-light);
+}
+
+.scores-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.score-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background: rgba(100, 255, 218, 0.1);
+}
+
+.App.light .score-item {
+  background: rgba(42, 90, 136, 0.1);
+}
+
+.rank {
+  color: var(--text-secondary-dark);
+  font-size: 0.9rem;
+}
+
+.player {
+  font-weight: bold;
+  color: var(--text-primary-dark);
+}
+
+.App.light .player {
+  color: var(--text-primary-light);
+}
+
+.score {
+  color: var(--text-primary-dark);
+}
+
+.App.light .score {
+  color: var(--text-primary-light);
+} 

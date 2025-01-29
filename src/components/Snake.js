@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './Snake.css';
+import HighScores from './HighScores';
 
 const Snake = () => {
   const SNAKE_TEXT = "Active Focus";
@@ -11,6 +12,12 @@ const Snake = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const gameContainerRef = useRef(null);
+  const [playerName, setPlayerName] = useState('');
+  const [showNameInput, setShowNameInput] = useState(true);
+  const [highScores, setHighScores] = useState(() => {
+    const saved = localStorage.getItem('snakeHighScores');
+    return saved ? JSON.parse(saved) : [];
+  });
 
   const generateFood = useCallback(() => {
     return [
@@ -124,49 +131,90 @@ const Snake = () => {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
+  const handleNameSubmit = (e) => {
+    e.preventDefault();
+    if (playerName.trim()) {
+      setShowNameInput(false);
+      setGameStarted(false);
+    }
+  };
+
+  const saveScore = useCallback(() => {
+    if (score > 0) {
+      const newScores = [...highScores, { name: playerName, score }]
+        .sort((a, b) => b.score - a.score);
+      setHighScores(newScores);
+      localStorage.setItem('snakeHighScores', JSON.stringify(newScores));
+    }
+  }, [score, playerName, highScores]);
+
+  useEffect(() => {
+    if (gameOver) {
+      saveScore();
+    }
+  }, [gameOver, saveScore]);
+
   return (
     <div className={`snake-game ${isFullscreen ? 'fullscreen' : ''}`} ref={gameContainerRef}>
-      <div className="game-controls">
-        <button 
-          className="fullscreen-button"
-          onClick={toggleFullscreen}
-        >
-          {isFullscreen ? '⤓' : '⤢'}
-        </button>
-        <span className="score">Score: {score}</span>
-        {!gameStarted && !gameOver && (
-          <div className="start-message">Press any arrow key to start</div>
-        )}
-        {gameOver && (
-          <div className="game-over">
-            <div>Game Over! Score: {score}</div>
-            <button onClick={resetGame} className="reset-button">Play Again</button>
+      {showNameInput ? (
+        <form onSubmit={handleNameSubmit} className="name-input-form">
+          <input
+            type="text"
+            value={playerName}
+            onChange={(e) => setPlayerName(e.target.value)}
+            placeholder="Enter your name"
+            required
+          />
+          <button type="submit">Start Game</button>
+        </form>
+      ) : (
+        <>
+          <div className="game-controls">
+            <button 
+              className="fullscreen-button"
+              onClick={toggleFullscreen}
+            >
+              {isFullscreen ? '⤓' : '⤢'}
+            </button>
+            <span className="score">Score: {score}</span>
+            {!gameStarted && !gameOver && (
+              <div className="start-message">Press any arrow key to start</div>
+            )}
+            {gameOver && (
+              <div className="game-over">
+                <div>Game Over! Score: {score}</div>
+                <button onClick={resetGame} className="reset-button">Play Again</button>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      <div className="game-board">
-        {Array(20).fill().map((_, row) => (
-          <div key={row} className="row">
-            {Array(20).fill().map((_, col) => {
-              const isSnake = snake.findIndex(segment => segment[0] === col && segment[1] === row);
-              const isFood = food[0] === col && food[1] === row;
-              return (
-                <div 
-                  key={`${row}-${col}`} 
-                  className={`cell ${isSnake !== -1 ? 'snake' : ''} ${isFood ? 'food' : ''}`}
-                >
-                  {isSnake !== -1 && isSnake < SNAKE_TEXT.length && (
-                    <span className="snake-text">{getSnakeText(isSnake)}</span>
-                  )}
-                  {isFood && (
-                    <span className="food-text">CVE</span>
-                  )}
+          <div className="game-container">
+            <div className="game-board">
+              {Array(20).fill().map((_, row) => (
+                <div key={row} className="row">
+                  {Array(20).fill().map((_, col) => {
+                    const isSnake = snake.findIndex(segment => segment[0] === col && segment[1] === row);
+                    const isFood = food[0] === col && food[1] === row;
+                    return (
+                      <div 
+                        key={`${row}-${col}`} 
+                        className={`cell ${isSnake !== -1 ? 'snake' : ''} ${isFood ? 'food' : ''}`}
+                      >
+                        {isSnake !== -1 && isSnake < SNAKE_TEXT.length && (
+                          <span className="snake-text">{getSnakeText(isSnake)}</span>
+                        )}
+                        {isFood && (
+                          <span className="food-text">CVE</span>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
+              ))}
+            </div>
+            <HighScores scores={highScores} />
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </div>
   );
 };
