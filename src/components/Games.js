@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Games.css';
 import Snake from './Snake';
+import SlidingPuzzle from './SlidingPuzzle';
 
 const Calculator = () => {
   const [display, setDisplay] = useState('0');
@@ -114,6 +115,23 @@ const Games = () => {
             </div>
             <div className="terminal-content">
               <Snake />
+            </div>
+          </div>
+        </section>
+
+        <section className="game-section puzzle-section">
+          <div className="section-header">
+            <h2 className="glitch" data-text="Cyber Puzzle">Cyber Puzzle</h2>
+            <div className="cyber-line"></div>
+          </div>
+          <div className="terminal-box">
+            <div className="terminal-header">
+              <span className="terminal-button"></span>
+              <span className="terminal-button"></span>
+              <span className="terminal-button"></span>
+            </div>
+            <div className="terminal-content">
+              <SlidingPuzzle />
             </div>
           </div>
         </section>

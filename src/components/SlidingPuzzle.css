@@ -1,0 +1,95 @@
+.sliding-puzzle {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.puzzle-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.reset-button {
+  padding: 8px 16px;
+  background: var(--accent-color);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-family: 'Share Tech Mono', monospace;
+  transition: all 0.3s ease;
+}
+
+.reset-button:hover {
+  background: var(--accent-hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.puzzle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  background: var(--background-color);
+  padding: 4px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.puzzle-tile {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary-background);
+  color: var(--text-color);
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.puzzle-tile.empty {
+  background: transparent;
+  border: 2px dashed var(--accent-color);
+  opacity: 0.3;
+}
+
+.puzzle-tile.movable:not(.empty) {
+  background: var(--accent-color);
+  transform: scale(0.95);
+}
+
+.puzzle-tile.movable:not(.empty):hover {
+  transform: scale(1);
+  box-shadow: 0 0 12px var(--accent-color);
+}
+
+.win-message {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--text-color);
+  animation: fadeIn 0.5s ease-in;
+}
+
+.win-message h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 
