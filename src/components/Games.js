@@ -168,7 +168,7 @@ const Games = () => {
       <div className="games-grid">
         <section className="game-section calculator-section">
           <div className="section-header">
-            <h2 className="glitch" data-text="Calculator">Calculator</h2>
+            <h2>Calculator</h2>
             <div className="cyber-line"></div>
           </div>
           <div className="terminal-box">
@@ -185,7 +185,7 @@ const Games = () => {
 
         <section className="game-section snake-section">
           <div className="section-header">
-            <h2 className="glitch" data-text="Catch the CVE's">Catch the CVE's</h2>
+            <h2>Catch the CVE's</h2>
             <div className="cyber-line"></div>
           </div>
           <div className="terminal-box">

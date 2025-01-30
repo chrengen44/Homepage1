@@ -4,10 +4,38 @@
   padding: 2rem;
   font-family: 'Fira Code', monospace;
   color: #e0e0e0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  height: calc(100vh - 80px);
+  scrollbar-width: thin;
+  scrollbar-color: #00ff9d #1a1a1a;
+}
+
+.games-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.games-container::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+.games-container::-webkit-scrollbar-thumb {
+  background: #00ff9d;
+  border-radius: 4px;
 }
 
 .App.light .games-container {
   color: #2d3436;
+  scrollbar-color: #0077b6 #f8f9fa;
+}
+
+.App.light .games-container::-webkit-scrollbar-track {
+  background: #f8f9fa;
+}
+
+.App.light .games-container::-webkit-scrollbar-thumb {
+  background: #0077b6;
 }
 
 .games-grid {
