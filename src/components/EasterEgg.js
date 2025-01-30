@@ -1,26 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import './EasterEgg.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 
 const EasterEgg = () => {
   const [sequence, setSequence] = useState('');
   const [showEasterEgg, setShowEasterEgg] = useState(false);
   const secretCode = 'anndrea';
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  const toggleFullscreen = useCallback(() => {
-    if (!document.fullscreenElement) {
-      const gameContainer = document.querySelector('.puzzle-container');
-      if (gameContainer) {
-        gameContainer.requestFullscreen().catch(err => {
-          console.error(`Error attempting to enable fullscreen: ${err.message}`);
-        });
-      }
-    } else {
-      document.exitFullscreen();
-    }
-  }, []);
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -36,15 +20,6 @@ const EasterEgg = () => {
 
     window.addEventListener('keypress', handleKeyPress);
     return () => window.removeEventListener('keypress', handleKeyPress);
-  }, []);
-
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
-
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
   return showEasterEgg ? (
